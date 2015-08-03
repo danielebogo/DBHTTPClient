@@ -1,0 +1,10 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'dbhttpclient' do
+  pod 'AFNetworking', '~> 2.5'
+end
+
+target 'dbhttpclientTests' do
+  pod 'AFNetworking', '~> 2.5'
+end

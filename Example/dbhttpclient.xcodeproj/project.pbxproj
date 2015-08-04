@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		327325BC0B3A5664D350E882 /* libPods-dbhttpclientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB63BBB24FF93E3E63CC5A1C /* libPods-dbhttpclientTests.a */; };
 		603E9EB8668687CD3ABAB1E2 /* libPods-dbhttpclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2B832C389FA484B2557D2A /* libPods-dbhttpclient.a */; };
+		9A0524271B716CA9005E7B30 /* DBHTTPClient+NewMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A0524261B716CA9005E7B30 /* DBHTTPClient+NewMethods.m */; };
 		9A81D7EF1B7024A60077BF6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A81D7EE1B7024A60077BF6D /* main.m */; };
 		9A81D7F21B7024A60077BF6D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A81D7F11B7024A60077BF6D /* AppDelegate.m */; };
 		9A81D7F51B7024A60077BF6D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A81D7F41B7024A60077BF6D /* ViewController.m */; };
@@ -33,6 +34,8 @@
 		02D084A8AB06BB76F5EB0BAC /* Pods-dbhttpclientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dbhttpclientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-dbhttpclientTests/Pods-dbhttpclientTests.release.xcconfig"; sourceTree = "<group>"; };
 		02F3CCA7B275C6B9B2CCAD1C /* Pods-dbhttpclient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dbhttpclient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dbhttpclient/Pods-dbhttpclient.debug.xcconfig"; sourceTree = "<group>"; };
 		25484D3C518DD198FFE2EF54 /* Pods-dbhttpclient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dbhttpclient.release.xcconfig"; path = "Pods/Target Support Files/Pods-dbhttpclient/Pods-dbhttpclient.release.xcconfig"; sourceTree = "<group>"; };
+		9A0524251B716CA9005E7B30 /* DBHTTPClient+NewMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DBHTTPClient+NewMethods.h"; sourceTree = "<group>"; };
+		9A0524261B716CA9005E7B30 /* DBHTTPClient+NewMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DBHTTPClient+NewMethods.m"; sourceTree = "<group>"; };
 		9A81D7E91B7024A60077BF6D /* dbhttpclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dbhttpclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81D7ED1B7024A60077BF6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A81D7EE1B7024A60077BF6D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 			children = (
 				9A81D8131B7025E70077BF6D /* DBHTTPClient.h */,
 				9A81D8141B7025E70077BF6D /* DBHTTPClient.m */,
+				9A0524251B716CA9005E7B30 /* DBHTTPClient+NewMethods.h */,
+				9A0524261B716CA9005E7B30 /* DBHTTPClient+NewMethods.m */,
 			);
 			name = DBHTTPClient;
 			path = ../../DBHTTPClient;
@@ -332,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A0524271B716CA9005E7B30 /* DBHTTPClient+NewMethods.m in Sources */,
 				9A81D7F51B7024A60077BF6D /* ViewController.m in Sources */,
 				9A81D7F21B7024A60077BF6D /* AppDelegate.m in Sources */,
 				9A81D8151B7025E70077BF6D /* DBHTTPClient.m in Sources */,

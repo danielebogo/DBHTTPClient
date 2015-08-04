@@ -30,7 +30,12 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
 
 - (instancetype)init
 {
-    self = [super initWithBaseURL:[NSURL URLWithString:@""]];
+    return [self initWithURL:@""];
+}
+
+- (instancetype)initWithURL:(NSString *)URL
+{
+    self = [super initWithBaseURL:[NSURL URLWithString:URL]];
     if (self) {
         _responseSerializer = [AFJSONResponseSerializer serializer];
         _responseSerializer.acceptableContentTypes = [self db_contentTypes];
@@ -46,21 +51,17 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
 
 #pragma mark - Override Methods
 
-- (AFHTTPRequestOperationBlockError)errorBlock
+- (AFHTTPSessionManagerBlockError)errorBlock
 {
     __weak typeof(self) weakSelf = self;
-    AFHTTPRequestOperationBlockError errorBlock = ^(NSURLSessionDataTask *task, NSError *error) {
+    AFHTTPSessionManagerBlockError errorBlock = ^(NSURLSessionDataTask *task, NSError *error) {
         __strong typeof(weakSelf)strongSelf = weakSelf;
         
         if ( strongSelf.successBlock ) {
             strongSelf.successBlock(task, nil);
         }
         
-        NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData:errorData options:kNilOptions error:nil];
-        
-        NSLog(@"Error %@", errorData);
-//        [weakSelf db_actionForStatusCode:task.response];
+        [weakSelf db_actionForStatusCode:((NSHTTPURLResponse *)task.response).statusCode];
     };
     
     return errorBlock;
@@ -107,37 +108,8 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
     return nil;
 }
 
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
-                                 URLString:(NSString *)URLString
-                                parameters:(NSDictionary *)parameters
-{
-    NSMutableURLRequest *request = [_requestSerializer requestWithMethod:method
-                                                               URLString:[self db_absoluteURLStringFrom:URLString]
-                                                              parameters:parameters
-                                                                   error:nil];
-#ifdef DEBUG
-    [request setTimeoutInterval:25];
-#else
-    [request setTimeoutInterval:25];
-#endif
-    
-    return [self db_addDefaultHeaderFieldsForRequest:request];
-}
-
 
 #pragma mark - Private methods
-
-- (NSMutableURLRequest *)db_addDefaultHeaderFieldsForRequest:(NSMutableURLRequest *)request
-{
-    //////////////////////////////////////////////////////////////////////
-    //                                                                  //
-    //  If you use default values within your request, add values here  //
-    //                                                                  //
-    //////////////////////////////////////////////////////////////////////
-    
-    //    [request setValue:@"value" forHTTPHeaderField:@"key-field"];
-    return request;
-}
 
 - (NSSet *)db_contentTypes
 {

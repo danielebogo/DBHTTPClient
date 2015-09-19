@@ -37,13 +37,16 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
 {
     self = [super initWithBaseURL:[NSURL URLWithString:URL]];
     if (self) {
-        _responseSerializer = [AFJSONResponseSerializer serializer];
-        _responseSerializer.acceptableContentTypes = [self db_contentTypes];
-        
-        _requestSerializer = [AFJSONRequestSerializer serializer];
-        _requestSerializer.allowsCellularAccess = YES;
-        
-        [self startReachabilityMonitor];
+        [self db_setupClient];
+    }
+    return self;
+}
+
+- (instancetype)initWithURL:(NSString *)URL sessionConfiguration:(NSURLSessionConfiguration *)configuration
+{
+    self = [super initWithBaseURL:[NSURL URLWithString:URL] sessionConfiguration:configuration];
+    if (self) {
+        [self db_setupClient];
     }
     return self;
 }
@@ -110,6 +113,17 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
 
 
 #pragma mark - Private methods
+
+- (void)db_setupClient
+{
+    _responseSerializer = [AFJSONResponseSerializer serializer];
+    _responseSerializer.acceptableContentTypes = [self db_contentTypes];
+    
+    _requestSerializer = [AFJSONRequestSerializer serializer];
+    _requestSerializer.allowsCellularAccess = YES;
+    
+    [self startReachabilityMonitor];
+}
 
 - (NSSet *)db_contentTypes
 {

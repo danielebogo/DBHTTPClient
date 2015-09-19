@@ -28,6 +28,7 @@ typedef void (^AFHTTPSessionManagerBlockError)(NSURLSessionDataTask *task, NSErr
 + (instancetype)client;
 
 - (instancetype)initWithURL:(NSString *)URL;
+- (instancetype)initWithURL:(NSString *)URL sessionConfiguration:(NSURLSessionConfiguration *)configuration;
 
 - (void)startReachabilityMonitor;
 - (void)checkAndCancelAllOperations;

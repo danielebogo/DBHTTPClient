@@ -52,22 +52,13 @@ NSString *const kDBActionLogout = @"kDBActionLogout";
 }
 
 
-#pragma mark - Override Methods
+#pragma mark - Override methods
 
-- (AFHTTPSessionManagerBlockError)errorBlock
+- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
+                            completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler
 {
-    __weak typeof(self) weakSelf = self;
-    AFHTTPSessionManagerBlockError errorBlock = ^(NSURLSessionDataTask *task, NSError *error) {
-        __strong typeof(weakSelf)strongSelf = weakSelf;
-        
-        if ( strongSelf.successBlock ) {
-            strongSelf.successBlock(task, nil);
-        }
-        
-        [weakSelf db_actionForStatusCode:((NSHTTPURLResponse *)task.response).statusCode];
-    };
-    
-    return errorBlock;
+    //Override this method if you wanna set custom HTTP headers
+    return [super dataTaskWithRequest:request completionHandler:completionHandler];
 }
 
 

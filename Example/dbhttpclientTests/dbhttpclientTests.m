@@ -11,7 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "DBHTTPClient.h"
-#import "DBHTTPClient+NewMethods.h"
+
 
 // Set the flag for a block completion handler
 #define StartBlock() __block BOOL waitingForBlock = YES
@@ -56,6 +56,8 @@ while(condition) { \
     [client_ GET:@"/test" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         EndBlock();
         XCTAssertNil(responseObject, @"responseObject should be nil");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
     }];
     WaitUntilBlockCompletes();
 }
